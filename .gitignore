@@ -1,0 +1,8 @@
+.idea
+cmdcommands
+src/.env
+src/src/.env
+.venv/
+venv/
+.pyre/
+requirements.dev.txt
