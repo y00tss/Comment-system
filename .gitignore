@@ -5,5 +5,4 @@ src/src/.env
 .venv/
 venv/
 .pyre/
-requirements.dev.txt
 docker-compose(EXAMPLE).yml
