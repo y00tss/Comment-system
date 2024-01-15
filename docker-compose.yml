@@ -5,41 +5,15 @@ services:
     build:
       context: .
       args:
-        - DEV=true
+        - DEV="true"
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/app
-      - dev-static-data:/vol/web
+      - ./src:/src
     command: >
-      sh -c "python manage.py migrate &&
-      python manage.py runserver 0.0.0.0:8000"
-    env_file:
-      - src/.env
-    environment:
-      - DB_HOST=db
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASS=${DB_PASS}
-      - DEBUG=1
-    depends_on:
-      - db
+      sh -c "python manage.py runserver 0.0.0.0:8000"
 
-  db:
-    image: postgres:13-alpine
-    restart: always
-    volumes:
-      - dev-db-data:/var/lib/postgresql/data
-    ports:
-      - '5432:5432'
-    env_file:
-      - src/.env
-    environment:
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASS}
 
 volumes:
   dev-db-data:
-  dev-static-data:
 

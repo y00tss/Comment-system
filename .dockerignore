@@ -13,3 +13,4 @@ app/*/*/*/__pycache__/
 app/.env/
 .venv/
 venv/
+docker-compose(EXAMPLE).yml
