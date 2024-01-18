@@ -24,8 +24,8 @@ Required
 ~~~~~~~~
 #. Open you terminal and put the command
    ::
-
         git clone https://github.com/y00tss/dZENcode_test_task.git
+   ::
 
 #. Open Docker Desktop on your Windows
 
