@@ -17,34 +17,32 @@
 [![Django Simple Captcha Version](https://img.shields.io/badge/Django%20Simple%20Captcha-0.6-orange.svg)](https://django-simple-captcha.readthedocs.io/en/latest/)
 
 
-   Installation
-------------
+## Running the Project Locally
 
-Required
 ~~~~~~~~
 1. Open you terminal and put the command:
-   ```
+   ```bash
         git clone https://github.com/y00tss/dZENcode_test_task.git
    ```
 2. Open Docker Desktop on your Windows
 
 3. Back to your terminal and put the command:
-   ```
+   ```bash
         cd dZENcode_test_task
    ```
 4. Next step is creating the conteiner by following command:
-   ```
+   ```bash
         docker-compose build
-   ```
+   ```bash
 5. Next command:
-   ```
+   ```bash
         docker-compose run --rm app sh -c "python manage.py makemigrations"
    ```
 6. After we need to create a superuser. Follow the guide inside (username and passwordx2):
-   ```
+   ```bash
         docker-compose run --rm app sh -c "python manage.py createsuperuser"
    ```
 7. Start the server:
-   ```
+   ```bash
         docker-compose up
    ```
