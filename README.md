@@ -22,7 +22,7 @@
 
 1. Open you terminal and put the command:
 ```bash
-git clone https://github.com/y00tss/dZENcode_test_task.git
+git clone https://github.com/y00tss/dZENcode_test_task
 ```
 2. Open Docker Desktop on your Windows
 
