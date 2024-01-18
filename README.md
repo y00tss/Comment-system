@@ -43,7 +43,7 @@ docker-compose run --rm app sh -c "python manage.py createsuperuser"
 docker-compose up
 ```
 8. Open the link:
-9. <a href="http://127.0.0.1:8000/home/" target="_blank">WebApp</a>
+<a href="http://127.0.0.1:8000/home/" target="_blank">WebApp</a>
 
 
 
