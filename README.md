@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 # dZENcode
 
 <br>
@@ -35,11 +34,7 @@ cd dZENcode_test_task
 ```bash
 docker-compose build
 ```
-5. Next command:
-```bash
-docker-compose run --rm app sh -c "python manage.py makemigrations"
-```
-6. After we need to create a superuser. Follow the guide inside (username and passwordx2):
+6. After we need to create a superuser. Follow the guide inside (username and passwordx2) or you can follow next step if you don`t want to visit Django Admin:
 ```bash
 docker-compose run --rm app sh -c "python manage.py createsuperuser"
 ```
@@ -47,4 +42,4 @@ docker-compose run --rm app sh -c "python manage.py createsuperuser"
 ```bash
 docker-compose up
 ```
->>>>>>> 94ed431f66fa2dac8172e7c1057f6b93a97356a5
+
