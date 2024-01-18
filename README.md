@@ -42,4 +42,8 @@ docker-compose run --rm app sh -c "python manage.py createsuperuser"
 ```bash
 docker-compose up
 ```
+8. Open the link:
+[Open the app](http://127.0.0.1:8000/home/)
+
+
 
