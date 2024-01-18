@@ -6,3 +6,4 @@ venv/
 docker-compose(EXAMPLE).yml
 src/__pycache__/
 comment/MPTTBROKEVERSION/
+src/__pycache__/
