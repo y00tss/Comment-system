@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'core/css/main.css' %}" />
+<!-- Main Body -->
+<section>
+    <div class="container">
+            <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                <form id="algin-form">
+                    <div class="form-group">
+                        <h4>Closed Access</h4>
+                    </div>
+                </form>
+            </div>
+        <p>If you have account pls press the button <a href="{% url 'login' %}" class="btn">Log In</a></p>
+        <p>Don't have an account? <a href="{% url 'signup' %}" class="btn">Sign up</a></p>
+    </div>
+</section>

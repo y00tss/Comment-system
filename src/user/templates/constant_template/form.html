@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'core/css/main.css' %}" />
+<!-- Main Body -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="align-form">
+                <h1>{{ title }}</h1>
+                <div class="form-group">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button type="submit" class="button">Continue</button>
+                        <p></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

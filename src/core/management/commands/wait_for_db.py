@@ -1,5 +1,5 @@
 """
-Django command to wait postgres database availability
+Django command to wait postgres database availability for avoid error
 """
 import time
 

@@ -14,3 +14,4 @@ app/.env/
 .venv/
 venv/
 docker-compose(EXAMPLE).yml
+comment/MPTTBROKEVERSION/

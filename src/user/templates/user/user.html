@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'core/css/main.css' %}" />
+<!-- Main Body -->
+<section>
+    <div class="container">
+            <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                <form id="algin-form">
+                    <div class="form-group">
+                        <img src="{{ user.avatar }}" alt="" class="rounded-circle" width="40" height="40">
+                        <h3>Your username: <strong>{{ user.username }}</strong></h3>
+                        <h4>Your email: <strong>{{ user.email }}</strong></h4>
+                        <h4>Joined: <strong>{{ user.date_joined|date:"F d, Y" }}</strong></h4>
+                        <p></p>
+                        <ul class="actions">
+                            <a class="button" onclick="showFullInfo()"><h4>Press HERE to get personal information</h4></a>
+                         </ul>
+                        <p id="full-info" style="display:none;">
+                            First name: <strong>{% if user.first_name %}{{ user.first_name }}{% else %}None{% endif %}</strong><br>
+                            Last name: <strong>{% if user.last_name %}{{ user.last_name }}{% else %}None{% endif %}</strong><br>
+                        </p>
+                        <div class="form-group">
+                            <a href="{% url 'index' %}">
+                                <button type="button" id="post" class="btn">Comments</button>
+                            </a>
+                        </div>
+                        
+                        <div class="form-group">
+                            <a href="{% url 'edit_profile' %}">
+                                <button type="button" id="post" class="btn">Edit Profile</button>
+                            </a>
+                        </div>
+                        
+                        <div class="form-group">
+                            <a href="{% url 'logout' %}">
+                                <button type="button" id="post" class="btn">Logout</button>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+</section>
+    <!-- Scripts -->
+    <script src="{% static 'user/js/additional.js' %}"></script>

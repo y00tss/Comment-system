@@ -1,0 +1,170 @@
+/* Global Styles */
+body {
+    background-color: #280707;
+    color: #d2a9a9;
+    margin: 30px;
+}
+
+/* Navbar Styles */
+.navbar-nav {
+    width: 100%;
+}
+
+#nav-items li a, #profile {
+    text-decoration: none;
+    color: rgb(224, 219, 219);
+    background-color: blanchedalmond;
+}
+
+/* Comment Styles */
+.comments {
+    margin-top: 5%;
+    margin-left: 10px;
+}
+
+.comment-text {
+    font-size: 20px;
+}
+
+.comment, .darker {
+    border: 1px solid rgb(51, 133, 133);
+    border-radius: 25px;
+    right: 20px;
+    padding: 20px 40px;
+    margin-bottom: 30px;
+}
+
+.darker {
+    float: right;
+}
+
+.comment h4, .comment span, .darker h4, .darker span {
+    display: inline;
+    margin-left: 10px;
+    font-size: 24px;
+}
+
+.comment p, .comment span, .darker p, .darker span {
+    color: rgb(184, 183, 183);
+}
+
+/* Form Styles */
+#align-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+    background-color: #280707;
+    border: 1px solid rgb(35, 122, 122);
+    border-radius: 12px;
+    color: white;
+    padding: 8px;
+}
+
+/* Button Styles */
+#post {
+    margin: 20px;
+    padding: 6px;
+    text-align: center;
+    background-color: #3f300b;
+    border: 1px solid #a88734;
+    color: #f6f6f6;
+    border-radius: 13px;
+    width: 100%;
+}
+
+#post:hover {
+    background-color: #3a7c3c;
+}
+
+/* Logout Button Styles */
+.image-container {
+    width: 320px;
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.buttontag {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.buttontag:hover {
+    background-color: #3a7c3c;
+}
+
+.buttonkarmaplus {
+    background-color: #13cc1a;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.buttonkarmaplus:hover {
+    background-color: #137015;
+}
+
+.buttonkarmaminus {
+    background-color: #e8347e;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.buttonkarmaminus:hover {
+    background-color: #3d041b;
+}
+
+.btnreply {
+    background-color: #e8347e;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.btnreply:hover {
+    background-color: #3d041b;
+}
+
+/* Media Queries */
+@media (min-width: 568px) {
+    .end {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    #post {
+        width: 100%;
+    }
+}
+

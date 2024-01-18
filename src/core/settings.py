@@ -1,6 +1,6 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,8 +10,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-load_dotenv()
-SECRET_KEY = os.getenv("SECRET_KEY")
+# load_dotenv()
+SECRET_KEY = "django-insecure-ch0(x%f&yib1gy3n5v+v*$h1zo+f@!rms^#ytpja=%(^^257l8"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -29,8 +29,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # Third party apps
+    # custom apps
     "core",
+    "comment",
+    "user",
+
+    # libs
+    'captcha',
+    'mptt',
+
 ]
 
 MIDDLEWARE = [
@@ -110,12 +117,24 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static files (css, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = '/static/static/'
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = '/vol/web/media/'
+STATIC_ROOT = '/vol/web/static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Additional settings
+# LOG IN/OUT
+LOGIN_REDIRECT_URL = 'user'
+LOGOUT_REDIRECT_URL = 'index'
+LOGIN_URL = 'Closed access'
+
+AUTH_USER_MODEL = 'user.CustomUser'

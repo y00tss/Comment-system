@@ -1,6 +1,9 @@
 .idea
-cmdcommands
+cmdcommands.txt
 .venv/
 venv/
 .pyre/
 docker-compose(EXAMPLE).yml
+src/__pycache__/
+comment/MPTTBROKEVERSION/
+src/.env

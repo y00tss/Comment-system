@@ -1,0 +1,14 @@
+<div class="form-group">
+    <h4>Create a new comment</h4>
+    {{ comment_form.as_p }}
+    <h4>TAGS</h4>
+    <p>Select text that you want change and select required tag</p>
+    <button type="button" class="buttontag" onclick="addLinkTag('id_text')">Link</button>
+    <button type="button" class="buttontag" onclick="addTag('<code>', '</code>', 'id_text')">Code</button>
+    <button type="button" class="buttontag" onclick="addTag('<i>', '</i>', 'id_text')">Italic</button>
+    <button type="button" class="buttontag" onclick="addTag('<strong>', '</strong>', 'id_text')">Bold</button>
+
+</div>
+<div class="form-group">
+    <button type="submit" id="post" class="btn">Post</button>
+</div>

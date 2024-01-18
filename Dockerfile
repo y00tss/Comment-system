@@ -10,25 +10,25 @@ COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./src /src
 WORKDIR /src
-EXPOSE  8000
+EXPOSE 8000
 
 ARG DEV=false
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
-    apk add --update --no-cache postgresql-client && \
+    # client for postgres \
+    apk add --update --no-cache postgresql-client jpeg-dev freetype-dev && \
     apk add --update --no-cache --virtual .tmp-build-deps \
-        build-base postgresql-dev musl-dev && \
+        build-base postgresql-dev musl-dev zlib zlib-dev linux-headers && \
     /py/bin/pip install -r /tmp/requirements.txt && \
-    /py/bin/pip install python-dotenv && \
-    if [ $DEV = "true" ]; \
-      then /py/bin/pip install -r /tmp/requirements.dev.txt; \
-    fi && \
     rm -rf /tmp && \
     apk del .tmp-build-deps && \
     adduser \
       --disabled-password \
       --no-create-home \
-      django-user
+      django-user && \
+    mkdir -p /vol/web/media && \
+    mkdir -p /vol/web/static && \
+    chown -R django-user:django-user /vol
 
 ENV PATH="/py/bin:$PATH"
 
