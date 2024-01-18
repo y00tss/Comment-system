@@ -22,34 +22,29 @@
 
 Required
 ~~~~~~~~
-#. Open you terminal and put the command
-   ::
+1. Open you terminal and put the command:
+   ```
         git clone https://github.com/y00tss/dZENcode_test_task.git
-   ::
+   ```
+2. Open Docker Desktop on your Windows
 
-#. Open Docker Desktop on your Windows
-
-#. Back to your terminal and put the command
-   ::
-
+3. Back to your terminal and put the command:
+   ```
         cd dZENcode_test_task
-
-#. Next step is creating the conteiner by following command
-   ::
-
+   ```
+4. Next step is creating the conteiner by following command:
+   ```
         docker-compose build
-
-#. Next command
-   ::
-
+   ```
+5. Next command:
+   ```
         docker-compose run --rm app sh -c "python manage.py makemigrations"
-
-#. After we need to create a superuser. Follow the guide inside (username and passwordx2)
-   ::
-
+   ```
+6. After we need to create a superuser. Follow the guide inside (username and passwordx2):
+   ```
         docker-compose run --rm app sh -c "python manage.py createsuperuser"
-
-#. Start the server
-   ::
-
+   ```
+7. Start the server:
+   ```
         docker-compose up
+   ```
