@@ -3,7 +3,7 @@
 <head>
     <title>Home Page</title>
     {% load static %}
-        <link rel="stylesheet" href="{% static 'core/css/main.css' %}" /></link>
+    <link rel="stylesheet" href="{% static 'core/css/main.css' %}" /></link>
 </head>
 <body>
  <!-- Main Body -->
@@ -17,41 +17,57 @@
     <!-- Comments -->
             <div class="row">
                 <div class="col-sm-5 col-md-6 col-12 pb-4">
-                    <h1>Comments</h1>
-                    {% if comments %}
-                        {% for comment in comments %}
-                            <div class="comment mt-4 text-justify float-left">
-                                <img src="{{ comment.author.avatar }}" alt="" class="rounded-circle" width="40" height="40">
-                                <h4>{{ comment.author.username }}</h4>
-                                <span>{{ comment.created }}</span>
-                                <p class="comment-text">{{ comment.text|safe }}</p>
-                                {% if comment.file %}
-                                    <div class="image-container">
-                                        <img src="{{ comment.file.url }}" alt="">
-                                    </div>
-                                {% endif %}
-                                <p class="comment-karma">Karma: <span id="karma-{{ comment.id }}">{{ comment.karma }}</span></p>
-                                {% if user.is_authenticated %}
-                                    <button type="button" class="buttonkarmaplus" onclick="voteKarma('{{ comment.id }}', 'up')">Upvote</button>
-                                    <button type="button" class="buttonkarmaminus" onclick="voteKarma('{{ comment.id }}', 'down')">Downvote</button>
-                                    <button type="button" class="btnreply" onclick="toggleReplyForm('{{ comment.id }}')">Reply</button>
-                                    <div id="reply-form-{{ comment.id }}" style="display: none;">
-                                        <h3>Reply to {{ comment.author.username }}</h3>
-                                        {% include 'comment/comment_form.html' %}
-                                    </div>
-                                {% endif %}
-{#                                {% for comment in mother_comments %}#}
-{#                                    <div class="comment mt-4 text-justify float-left">#}
-{#                                        {% include 'comment/comment.html' with comment=comment %}#}
-{#                                    </div>#}
-{#                                {% endfor %}#}
-                            </div>
-                        {% endfor %}
-                    {% else %}
+                        {% with allcomments.count as total_comments %}
+                            <h2>{{ total_comments }} comment{{ comments|pluralize }}</h2>
+                        {% endwith %}
+
+                        {% load mptt_tags %}
+
+
+                        {% recursetree allcomments %}
                         <div class="comment mt-4 text-justify float-left">
-                                <p class="comment-text">No comments yet. </p>
-                            </div>
-                    {% endif %}
+
+                            {% if node.level == 0 %}
+                            <p>Level: {{ node.level }}, It`s a main comment</p>
+                            {% else %}
+                            <p>Level: {{ node.level }}, reply to {{ node.parent.author.username }}`s comment: {{ node.parent.text }}</p>
+                            {% endif %}
+
+                            <img src="{{ node.author.avatar }}" alt="" class="rounded-circle" width="40" height="40">
+                            <h4>{{ node.author.username }}</h4>
+                            <span>{{ node.created }}</span>
+                            <p class="comment-text">{{ node.text|safe }}</p>
+                            {% if node.file %}
+                                <div class="image-container">
+                                    <img src="{{ node.file.url }}" alt="">
+                                </div>
+                            {% endif %}
+                            <p class="comment-karma">Karma: <span id="karma-{{ node.id }}">{{ node.karma }}</span></p>
+                            {% if user.is_authenticated %}
+                                <button type="button" class="buttonkarmaplus" onclick="voteKarma('{{ node.id }}', 'up')">Upvote</button>
+                                <button type="button" class="buttonkarmaminus" onclick="voteKarma('{{ node.id }}', 'down')">Downvote</button>
+                                {% if node.level < MAX_NODE_LEVEL %}
+                                    <button class="btnreply" onclick="myFunction({{ node.id }})">Reply</button>
+                                    <div id="reply-form-{{ node.id }}" style="display: none;">
+                                        <h3>Reply to {{ node.author.username }}</h3>
+                                        <form method="post" action="{% url 'reply' node.id %}" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                {% include 'comment/comment_form.html' %}
+                                                <button type="submit" class="btnreply">Reply</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+    <!-- Reply comments -->
+                            {% if children %}
+                                {{ children }}
+                            {% endif %}
+
+                        </div>
+                        {% endrecursetree %}
+
                 </div>
     <!-- Comment form -->
                 {% if user.is_authenticated %}
@@ -72,7 +88,9 @@
 <script src="{% static 'comment/js/linktag.js' %}"></script>
 <script src="{% static 'comment/js/add_tags.js' %}"></script>
 <script src="{% static 'comment/js/karma.js' %}"></script>
-<script src="{% static 'comment/js/replay.js' %}"></script>
+<script src="{% static 'comment/js/reply.js' %}"></script>
+
+
 
 </body>
 </html>

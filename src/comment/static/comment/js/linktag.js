@@ -1,3 +1,4 @@
+// Add link tag to textarea with additional window for link and text
 function addLinkTag(textareaId) {
     var textarea = document.getElementById(textareaId);
     var start = textarea.selectionStart;

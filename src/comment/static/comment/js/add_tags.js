@@ -1,3 +1,4 @@
+// Load this script after the textarea you want to add tags to
 function addTag(openingTag, closingTag, textareaId) {
     var textarea = document.getElementById(textareaId);
     var start = textarea.selectionStart;

@@ -1,3 +1,4 @@
+// Karma voting
 function voteKarma(commentId, action) {
     fetch(`/vote_karma/${commentId}/${action}/`)
         .then(response => response.json())

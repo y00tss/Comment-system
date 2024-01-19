@@ -19,6 +19,7 @@
                         <p id="full-info" style="display:none;">
                             First name: <strong>{% if user.first_name %}{{ user.first_name }}{% else %}None{% endif %}</strong><br>
                             Last name: <strong>{% if user.last_name %}{{ user.last_name }}{% else %}None{% endif %}</strong><br>
+                            Gender: <strong>{{ user.sex }}</strong><br>
                         </p>
                         <div class="form-group">
                             <a href="{% url 'index' %}">

@@ -3,13 +3,16 @@ User views
 """
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth import (
+    login,
+    logout,
+    authenticate,
+)
 from django.shortcuts import render, redirect
 
-from user.forms import SignUpForm, ProfileEditForm
+from user.forms import SignUpForm, ProfileEditForm, LoginForm
 
-
-# from general.views import BaseView
 
 @login_required
 def profileview(request):
@@ -24,6 +27,7 @@ def profileview(request):
 
 @login_required
 def edit_profile(request):
+    """Edit profile page for authenticated users."""
     if request.method == 'POST':
         form = ProfileEditForm(
             request.POST,
@@ -61,6 +65,38 @@ def signup(request):
         'user/signup.html',
         {'form': form, 'title': 'Registration'}
     )
+
+
+def login_view(request):
+    """Login page for users."""
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('user')
+            else:
+                messages.error(request, 'Invalid login credentials.')
+    else:
+        form = LoginForm()
+
+    return render(
+        request,
+        'registration/login.html',
+        {'form': form, 'title': 'Login'}
+    )
+
+
+def logout_view(request):
+    """Logout page for users."""
+    logout(request)
+    messages.success(request, 'Logout successful.')
+    return redirect('Closed access')
 
 
 def closed_access(request):

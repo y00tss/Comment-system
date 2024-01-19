@@ -1,4 +1,5 @@
-function toggleReplyForm(commentId) {
+// This file is used to toggle the reply form for each comment
+function myFunction(commentId) {
     var formId = 'reply-form-' + commentId;
     var form = document.getElementById(formId);
 

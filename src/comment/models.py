@@ -2,20 +2,14 @@
 Models for comment app
 """
 from django.contrib.auth import get_user_model
-from user.models import CustomUser
-
 from django.db import models
 
+from user.models import CustomUser
 
-class CommentManager(models.Manager):
-    """Manager for comment model"""
-
-    def get_queryset(self):
-        """Returns queryset with related mother`s comment and author"""
-        return super().all().select_related("mother_comment", "author")
+from mptt.models import MPTTModel, TreeForeignKey
 
 
-class Comment(models.Model):
+class Comment(MPTTModel):
     """Model for comment"""
     author = models.ForeignKey(
         CustomUser,
@@ -35,13 +29,28 @@ class Comment(models.Model):
         verbose_name='Date of creation',
     )
 
-    mother_comment = models.ForeignKey(
+    level = models.PositiveIntegerField(
+        default=0,
+    )
+
+    lft = models.PositiveIntegerField(
+        default=0
+    )
+
+    rght = models.PositiveIntegerField(
+        default=0,
+    )
+
+    tree_id = models.PositiveIntegerField(
+        default=0,
+    )
+
+    parent = TreeForeignKey(
         'self',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        default=None,
-        verbose_name='Mother comment',
+        related_name='children',
     )
 
     voters = models.ManyToManyField(
@@ -62,8 +71,9 @@ class Comment(models.Model):
     )
 
     def __str__(self) -> str:
-        """Returns comment and author"""
-        return f"ID comment: {self.pk} from {self.author}"
+        """Returns comment and author with truncated text"""
+        truncated_text = self.text[:50] if len(self.text) > 50 else self.text
+        return f"Author: {self.author} - Text: {truncated_text}"
 
     def karma_up(self, user):
         """Increase karma by 1 per user, once"""
@@ -79,15 +89,6 @@ class Comment(models.Model):
             self.voters.add(user)
             self.save()
 
-    class Meta:
-        ordering = ['-created']
-        verbose_name = "Comment"
-        verbose_name_plural = "Comments"
-
-    # def get_mother_comments(self):
-    #     """Func for getting mother comments (first)"""
-    #     return Comment.objects.filter(mother_comment__isnull=True)
-    #
-    # def get_reply_comments(self):
-    #     """Func for getting reply comments"""
-    #     return Comment.objects.filter(mother_comment=self)
+    class MPTTMeta:
+        """Meta class for MPTT"""
+        order_insertion_by = ['-created']

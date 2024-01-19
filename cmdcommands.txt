@@ -4,7 +4,7 @@ git add .
 git commit -am "Text commit"
 git push origin
 
-        """DOCKER COMMANDS"""
+        """DOCKER / SERVER COMMANDS"""
 docker-compose up
 docker-compose build
 docker-compose up --build
@@ -14,7 +14,7 @@ docker-compose down -v
 docker-compose run --rm app sh -c "django-admin startproject src"
 docker-compose run --rm app sh -c "python manage.py startapp core"
 
-        """SERVER COMMANDS"""
+        """TESTING COMMANDS"""
 docker-compose run --rm app sh -c "python manage.py test"
 docker-compose run --rm app sh -c "python manage.py wait_for_db"
 

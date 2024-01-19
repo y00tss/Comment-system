@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from tzlocal import get_localzone
 # from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,6 +29,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # additional django apps
+    'django_comments',
+    'django.contrib.sites',
 
     # custom apps
     "core",
@@ -109,8 +114,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
+from django.utils import timezone
 
-TIME_ZONE = "UTC"
+now_utc = timezone.now()  # Get current datetime in UTC
+
+TIME_ZONE = str(get_localzone())
 
 USE_I18N = True
 

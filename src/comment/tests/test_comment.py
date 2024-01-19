@@ -43,7 +43,7 @@ class CommentAppTests(TestCase):
         self.client.login(username='testuser', password='testpasswordSQ1')
 
         response = self.client.post(url, data)
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
         self.assertTrue(Comment.objects.filter(
             text='Test',
             author=self.user
@@ -64,33 +64,48 @@ class CommentAppTests(TestCase):
             author=self.user
         ).exists())
 
-    """
-    Should be created right tests
-    """
-
     def test_vote_karma_up(self):
         """Test for voting karma up"""
-        comment = Comment.objects.create(author=self.user, text='Test')
+        self.comment = Comment.objects.create(
+            author=self.user,
+            text='TestPlus',
+        )
+
+        initial_karma = self.comment.karma
+
+        self.client.force_login(self.user)
 
         response = self.client.post(
-            reverse('vote_karma',
-                    kwargs={'comment_id': comment.id, 'action': 'up'})
+            reverse(
+                'vote_karma',
+                kwargs={'comment_id': self.comment.id, 'action': 'up'}
+            )
         )
 
         self.assertEqual(response.status_code, 200)
-        # self.assertEqual(Comment.objects.get(id=comment.id).karma, 1)
+
+        updated_comment = Comment.objects.get(pk=self.comment.id)
+
+        self.assertEqual(updated_comment.karma, initial_karma + 1)
 
     def test_vote_karma_down(self):
         """Test for voting karma down"""
-        comment = Comment.objects.create(
+        self.comment = Comment.objects.create(
             author=self.user,
-            text='Test comment text'
+            text='TestMinus',
         )
+        initial_karma = self.comment.karma
+
+        self.client.force_login(self.user)
 
         response = self.client.post(
-            reverse('vote_karma',
-                    kwargs={'comment_id': comment.id, 'action': 'down'})
+            reverse(
+                'vote_karma',
+                kwargs={'comment_id': self.comment.id, 'action': 'down'})
         )
 
         self.assertEqual(response.status_code, 200)
-        # self.assertEqual(Comment.objects.get(id=comment.id).karma, -1)
+
+        updated_comment = Comment.objects.get(pk=self.comment.id)
+
+        self.assertEqual(updated_comment.karma, initial_karma - 1)
