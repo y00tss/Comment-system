@@ -45,8 +45,10 @@ docker-compose up
 8. Open the link:
 <a href="http://127.0.0.1:8000/home/" target="_blank">WebApp</a>
 
-
-
+# Settings
+1. Database local, default PORT = 5432 , keep this port free before Running App
+2. Nested reply is limited. Follow to src/comment/service/comment_settings.py and change MAX_NODE_LEVEL
+3. Prepare your eyes. I found a bad template, so nested comments looks a little strange
 
 
 
