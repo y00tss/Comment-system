@@ -46,7 +46,7 @@ docker-compose run --rm app sh -c "python manage.py createsuperuser"
 docker-compose up
 ```
 8. Open the link:
-<a href="http://127.0.0.1:8000/home/" target="_blank">WebApp</a>
+<a href="http://127.0.0.1:8000/" target="_blank">WebApp</a>
 
 # Settings
 1. Database local, default PORT = 5432 , keep this port free before Running App
