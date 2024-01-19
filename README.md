@@ -13,9 +13,12 @@
 <br>
 
 [![Python Version](https://img.shields.io/badge/Python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
+[![Django Version](https://img.shields.io/badge/Django-4.2-blue.svg)](https://docs.djangoproject.com/en/4.2/releases/4.2/)
 [![PostgreSQL Version](https://img.shields.io/badge/PostgreSQL-13-green.svg)](https://www.postgresql.org/docs/13/release-13-2.html)
 [![Flake8](https://img.shields.io/badge/Flake8-Check%20Code-yellow.svg)](https://flake8.pycqa.org/)
 [![Django Simple Captcha Version](https://img.shields.io/badge/Django%20Simple%20Captcha-0.6-orange.svg)](https://django-simple-captcha.readthedocs.io/en/latest/)
+[![django-mptt Version](https://img.shields.io/badge/django--mptt-0.12.0-brightgreen.svg)](https://django-mptt.readthedocs.io/en/latest/)
+[![tzlocal Version](https://img.shields.io/badge/tzlocal-5.0-yellowgreen.svg)](https://tzlocal.readthedocs.io/en/latest/)
 
 
 ## Running the Project Locally
