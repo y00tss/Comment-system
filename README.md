@@ -1,5 +1,5 @@
 
-# dZENcode
+# y00tss
 
 <br>
 
@@ -25,13 +25,13 @@
 
 1. Open you terminal and put the command:
 ```bash
-git clone https://github.com/y00tss/dZENcode_test_task
+git clone https://github.com/y00tss/Comment-system
 ```
 2. Open Docker Desktop on your Windows
 
 3. Back to your terminal and put the command:
 ```bash
-cd dZENcode_test_task
+cd Comment-system
 ```
 4. Next step is creating the conteiner by following command:
 ```bash
